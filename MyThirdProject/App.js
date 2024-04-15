@@ -1,20 +1,36 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import { Text, Button ,View } from 'react-native';
 
-export default function App() {
+function TV(props){
+
+  const [isOff,setIsOff] = useState(true);
+  return(
+    <View>
+      {"\n\n\n\n"}
+      <Text>
+        This is {props.name} TV, and it is {isOff ? "OFF" : "Turned Me On"}
+      </Text>
+      <Button
+      onPress={() =>{
+        setIsOff(false);
+      }}
+      disabled={!isOff}
+      title={isOff ? "Turn Me On, Please!" : "Thank You"}
+      />
+    </View>
+  )
+}
+
+export default function MultiTVs() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View> 
+      <TV name = "LG"/>
+      <TV name = "Sony"/>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+
+
